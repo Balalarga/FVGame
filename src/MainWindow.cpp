@@ -5,7 +5,6 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "OpenglErrorHandle.h"
 
 using namespace std;
 
@@ -14,7 +13,8 @@ std::unique_ptr<MainWindow> MainWindow::_selfInstance;
 MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     _windowTitle(title),
     _windowSize(windowSize),
-    _useImgui(false)
+    _useImgui(false),
+    _scene(make_unique<Scene>())
 {
     if (!glfwInit())
     {
@@ -80,7 +80,8 @@ void MainWindow::Run()
         if(_useImgui)
             ClearImGui();
 
-        Render();
+        _scene->Render();
+
         if(_useImgui)
             RenderImGui();
 
@@ -97,12 +98,7 @@ void MainWindow::UseImGui(bool use)
 
 void MainWindow::Clear()
 {
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-}
-
-void MainWindow::Render()
-{
-
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void MainWindow::Update(float dt)

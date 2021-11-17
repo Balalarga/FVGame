@@ -8,6 +8,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "Graphics/Scene.h"
+
 class MainWindow
 {
 public:
@@ -21,7 +23,6 @@ public:
 
 protected:
     virtual void Clear();
-    virtual void Render();
     virtual void Update(float dt);
     virtual void HandleEvents();
     virtual void ClearImGui();
@@ -37,6 +38,8 @@ private:
     glm::uvec2 _windowSize;
     std::string _windowTitle;
     bool _useImgui;
+
+    std::unique_ptr<Scene> _scene;
 };
 
 #endif // MAINWINDOW_H
