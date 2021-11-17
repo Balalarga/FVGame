@@ -24,11 +24,32 @@ ShadersLayoutItem::ShadersLayoutItem():
     size(0)
 {}
 
-ShadersLayoutItem::ShadersLayoutItem(unsigned count, Type type):
-    count(count),
-    type(type),
-    size(count * GetTypeSize(type))
-{}
+ShadersLayoutItem::ShadersLayoutItem(unsigned count, Type type)
+{
+    Setup(count, type);
+}
+
+void ShadersLayoutItem::Setup(unsigned newCount, Type newType)
+{
+    count = newCount;
+    type = newType;
+    size = count * GetTypeSize(type);
+}
+
+unsigned ShadersLayout::GetOpenglType(ShadersLayoutItem::Type type)
+{
+    switch(type)
+    {
+    case ShadersLayoutItem::Type::Float:
+        return GL_FLOAT;
+    case ShadersLayoutItem::Type::Int:
+        return GL_INT;
+    case ShadersLayoutItem::Type::UnsignedInt:
+        return GL_UNSIGNED_INT;
+    default:
+        return GL_NONE;
+    }
+}
 
 void ShadersLayout::Add(ShadersLayoutItem::Type type, unsigned count)
 {

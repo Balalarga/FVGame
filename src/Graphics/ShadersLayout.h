@@ -12,6 +12,9 @@ struct ShadersLayoutItem
 
     ShadersLayoutItem();
     ShadersLayoutItem(unsigned count, Type type);
+
+    void Setup(unsigned count, Type type);
+
     unsigned count;
     Type type;
     unsigned size;
@@ -22,6 +25,8 @@ class ShadersLayout
 public:
     ShadersLayout() = default;
     ShadersLayout(const std::vector<ShadersLayoutItem>& items);
+
+    static unsigned GetOpenglType(ShadersLayoutItem::Type type);
 
     void Add(ShadersLayoutItem::Type type, unsigned count);
 

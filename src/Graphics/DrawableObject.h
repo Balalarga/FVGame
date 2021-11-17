@@ -4,20 +4,27 @@
 #include "ShaderProgram.h"
 #include <vector>
 
+enum class DrawType
+{
+    Triangles, Quads, Lines, Points
+};
+
 class DrawableObject
 {
 public:
     DrawableObject(ShaderProgram *shaderProgram);
 
-    virtual void Create(unsigned verticesCount);
-    virtual void Create(const std::vector<float>& vertices);
+    virtual void Create(const std::vector<float>& data);
+
     virtual void Destroy();
-    virtual void Clear();
 
     bool IsCreated() const;
-    void SetPrimitive(unsigned primitive);
+
+    void SetPrimitive(DrawType drawType);
+
     void BindShader();
     void ReleaseShader();
+
     void Render();
 
     ShaderProgram* GetShaderProgram();
@@ -25,9 +32,12 @@ public:
 private:
     ShaderProgram* _shaderProgram;
 
+    DrawType _drawType;
+
+    bool _isCreated;
+
     unsigned _vaoHandler;
     unsigned _vboHandler;
-    unsigned _primitive;
     unsigned _verticesCount;
     unsigned _verticesFilling;
 

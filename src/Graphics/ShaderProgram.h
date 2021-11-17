@@ -29,6 +29,8 @@ public:
 
     bool IsCreated();
 
+    inline const ShadersLayout& GetLayout(){ return _layout; }
+
 
 protected:
     bool CheckProgram();
