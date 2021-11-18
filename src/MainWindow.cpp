@@ -71,6 +71,22 @@ void MainWindow::RegisterCallbacks()
     {
         glViewport(0, 0, width, height);
     });
+
+    glfwSetKeyCallback(_window, [](GLFWwindow*, int key, int scancode, int action, int mods){
+        MainWindow::Get()->OnKey(key, scancode, action, mods);
+    });
+
+    glfwSetMouseButtonCallback(_window, [](GLFWwindow*, int button, int action, int mods){
+        MainWindow::Get()->OnMouseButton(button, action, mods);
+    });
+
+    glfwSetScrollCallback(_window, [](GLFWwindow*, double xoffset, double yoffset){
+        MainWindow::Get()->OnScroll(xoffset, yoffset);
+    });
+
+    glfwSetCursorPosCallback(_window, [](GLFWwindow*, double xpos, double ypos){
+        MainWindow::Get()->OnMouseMove(xpos, ypos);
+    });
 }
 
 MainWindow::~MainWindow()
@@ -160,6 +176,26 @@ void MainWindow::SwapBuffers()
 }
 
 void MainWindow::OnResize(int width, int height)
+{
+
+}
+
+void MainWindow::OnKey(int key, int scancode, int action, int mods)
+{
+
+}
+
+void MainWindow::OnMouseButton(int button, int action, int mods)
+{
+
+}
+
+void MainWindow::OnScroll(double xoffset, double yoffset)
+{
+
+}
+
+void MainWindow::OnMouseMove(double xpos, double ypos)
 {
 
 }
