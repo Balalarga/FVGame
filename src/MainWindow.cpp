@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 
 #include <iostream>
+#include <chrono>
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -47,8 +48,29 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
 
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
-    ImGui_ImplOpenGL3_Init("#version 460 core");
+    ImGui_ImplOpenGL3_Init("#version 330 core");
     ImGui::StyleColorsDark();
+
+    glClearColor(0.2, 0.2, 0.2, 1);
+    glFrontFace(GL_CW);
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
+    RegisterCallbacks();
+}
+
+void MainWindow::RegisterCallbacks()
+{
+    glfwSetWindowSizeCallback(_window, [](GLFWwindow*, int width, int height)
+    {
+        MainWindow::Get()->OnResize(width, height);
+    });
+
+    glfwSetFramebufferSizeCallback(_window, [](GLFWwindow*, int width, int height)
+    {
+        glViewport(0, 0, width, height);
+    });
 }
 
 MainWindow::~MainWindow()
@@ -70,6 +92,11 @@ MainWindow *MainWindow::Create(const std::string &title, glm::uvec2 windowSize)
 MainWindow *MainWindow::Get()
 {
     return _selfInstance.get();
+}
+
+Scene *MainWindow::GetScene()
+{
+    return _scene.get();
 }
 
 void MainWindow::Run()
@@ -130,4 +157,9 @@ void MainWindow::RenderImGui()
 void MainWindow::SwapBuffers()
 {
     glfwSwapBuffers(_window);
+}
+
+void MainWindow::OnResize(int width, int height)
+{
+
 }

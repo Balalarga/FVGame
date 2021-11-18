@@ -16,6 +16,9 @@ public:
     ShaderProgram();
     ~ShaderProgram();
 
+    void Bind();
+    void Release();
+
     void SetName(const std::string& shaderName);
     void SetLayout(const ShadersLayout& layout);
 

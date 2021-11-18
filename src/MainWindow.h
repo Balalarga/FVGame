@@ -17,6 +17,8 @@ public:
     static MainWindow* Create(const std::string& title, glm::uvec2 windowSize = {800, 600});
     static MainWindow* Get();
 
+    Scene* GetScene();
+
     void Run();
     void UseImGui(bool use);
 
@@ -29,10 +31,15 @@ protected:
     virtual void RenderImGui();
     void SwapBuffers();
 
+    // Events
+    virtual void OnResize(int width, int height);
+
 
 private:
     MainWindow(const std::string& title, glm::uvec2 windowSize);
     static std::unique_ptr<MainWindow> _selfInstance;
+
+    void RegisterCallbacks();
 
     GLFWwindow* _window = nullptr;
     glm::uvec2 _windowSize;

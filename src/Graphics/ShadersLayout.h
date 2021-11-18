@@ -45,6 +45,8 @@ public:
         return _width;
     }
 
+    ShadersLayout& operator=(const ShadersLayout& oth);
+
 private:
     std::vector<ShadersLayoutItem> _layoutItems;
     unsigned _stride = 0;

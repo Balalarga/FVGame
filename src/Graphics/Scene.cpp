@@ -19,7 +19,11 @@ void Scene::AddObject(DrawableObject *object)
 void Scene::Render()
 {
     for(auto& obj: _objects)
+    {
+        obj->BindShader();
         obj->Render();
+        obj->ReleaseShader();
+    }
 }
 
 ShaderStorage &Scene::GetShaderStorage()

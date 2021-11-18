@@ -16,6 +16,16 @@ ShaderProgram::~ShaderProgram()
     Destroy();
 }
 
+void ShaderProgram::Bind()
+{
+    glUseProgram(_handler);
+}
+
+void ShaderProgram::Release()
+{
+    glUseProgram(0);
+}
+
 void ShaderProgram::SetName(const std::string &shaderName)
 {
     _shaderProgramName = shaderName;

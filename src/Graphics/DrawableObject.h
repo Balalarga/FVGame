@@ -4,7 +4,7 @@
 #include "ShaderProgram.h"
 #include <vector>
 
-enum class DrawType
+enum class DrawMode
 {
     Triangles, Quads, Lines, Points
 };
@@ -20,7 +20,7 @@ public:
 
     bool IsCreated() const;
 
-    void SetPrimitive(DrawType drawType);
+    void SetPrimitive(DrawMode drawType);
 
     void BindShader();
     void ReleaseShader();
@@ -32,7 +32,7 @@ public:
 private:
     ShaderProgram* _shaderProgram;
 
-    DrawType _drawType;
+    unsigned _drawMode;
 
     bool _isCreated;
 

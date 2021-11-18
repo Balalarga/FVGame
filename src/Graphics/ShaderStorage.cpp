@@ -1,6 +1,7 @@
 #include "ShaderStorage.h"
 
 #include "Utils/Files.h"
+#include <iostream>
 
 ShaderStorage::ShaderStorage()
 {
@@ -21,6 +22,8 @@ ShaderProgram *ShaderStorage::AddShaderProgram(const std::string &tag, const Sha
 
     for(auto& [_, shader]: shaders)
         program->AddShader(shader);
+
+    _shaderPrograms[tag] = program;
 
     return program;
 }
@@ -45,7 +48,7 @@ Shader *ShaderStorage::AddShader(const std::string &tag, Shader::Type type, cons
 Shader *ShaderStorage::GetShader(const std::string &tag)
 {
     auto mapIterator = _shaders.find(tag);
-    if(mapIterator == _shaders.end())
+    if(mapIterator != _shaders.end())
         return (*mapIterator).second;
     return nullptr;
 }
@@ -53,20 +56,22 @@ Shader *ShaderStorage::GetShader(const std::string &tag)
 ShaderProgram *ShaderStorage::GetShaderProgram(const std::string &tag)
 {
     auto mapIterator = _shaderPrograms.find(tag);
-    if(mapIterator == _shaderPrograms.end())
+    if(mapIterator != _shaderPrograms.end())
         return (*mapIterator).second;
     return nullptr;
 }
 
 void ShaderStorage::CompileAll()
 {
-    for(auto& [_, shader]: _shaders)
+    for(auto& [tag, shader]: _shaders)
     {
-        shader->Compile();
+        if(!shader->Compile())
+            std::cout<<tag<<" compile error\n";
     }
-    for(auto& [_, shaderProgram]: _shaderPrograms)
+    for(auto& [tag, shaderProgram]: _shaderPrograms)
     {
-        shaderProgram->Compile();
+        if(!shaderProgram->Compile())
+            std::cout<<tag<<" compile error\n";
     }
 }
 

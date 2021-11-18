@@ -57,3 +57,16 @@ void ShadersLayout::Add(ShadersLayoutItem::Type type, unsigned count)
     _stride += count * GetTypeSize(type);
     _layoutItems.push_back(ShadersLayoutItem(count, type));
 }
+
+ShadersLayout &ShadersLayout::operator=(const ShadersLayout &oth)
+{
+    if(this == &oth)
+        return *this;
+
+    _stride = oth._stride;
+    _width = oth._width;
+    _layoutItems.resize(oth._layoutItems.size());
+    for(int i = 0; i < _layoutItems.size(); ++i)
+        _layoutItems[i] = oth._layoutItems[i];
+    return *this;
+}
