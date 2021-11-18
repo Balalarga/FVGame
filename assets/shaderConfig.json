@@ -12,7 +12,6 @@
             "Path": "../assets/shaders/default.frag"
         }
     ],
-
     "ShaderPrograms":
     [
         {
