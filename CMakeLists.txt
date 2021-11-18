@@ -11,13 +11,17 @@ add_compile_definitions(GLEW_STATIC)
 
 include_directories(src)
 
+link_directories(3rdParty/GLEW/lib)
+include_directories(3rdParty/GLEW/include)
+link_directories(3rdParty/GLFW/lib)
+include_directories(3rdParty/GLFW/include)
+include_directories(3rdParty/glm
+                    3rdParty/ImGui
+                    3rdParty/GLFW/include
+                    3rdParty/rapidjson)
+
+
 if(WIN32)
-    link_directories(3rdParty/GLEW/lib)
-    include_directories(3rdParty/GLEW/include)
-    link_directories(3rdParty/GLFW/lib)
-    include_directories(3rdParty/GLFW/include)
-    include_directories(3rdParty/glm)
-    include_directories(3rdParty/ImGui)
     set (PROJECT_LIBS mingw32 glew32 opengl32 glu32 Imm32)
 else(WIN32)
     set (PROJECT_LIBS gl glew glu)

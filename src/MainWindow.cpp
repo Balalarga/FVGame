@@ -28,7 +28,7 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    _window = glfwCreateWindow(_windowSize.x, _windowSize.y, "Hello World", NULL, NULL);
+    _window = glfwCreateWindow(_windowSize.x, _windowSize.y, title.c_str(), NULL, NULL);
     if (!_window)
     {
         cout<<"Window not created!!!!\n";

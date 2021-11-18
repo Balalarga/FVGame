@@ -1,0 +1,39 @@
+{
+    "Shaders":
+    [
+        {
+            "Tag": "vShaderDefault",
+            "Type": "Vertex",
+            "Path": "../assets/shaders/default.vert"
+        },
+        {
+            "Tag": "fShaderDefault",
+            "Type": "Fragment",
+            "Path": "../assets/shaders/default.frag"
+        }
+    ],
+
+    "ShaderPrograms":
+    [
+        {
+            "Tag": "DefaultShaderProgram",
+            "Shaders":
+            [
+                "vShaderDefault",
+                "fShaderDefault"
+            ],
+            "Layout":
+            [
+                {
+                    "Count": 3,
+                    "Type": "Float"
+                },
+                {
+                    "Count": 4,
+                    "Type": "Float"
+                }
+            ],
+            "Uniforms":[]
+        }
+    ]
+}
