@@ -85,6 +85,56 @@ bool ShaderProgram::IsCreated()
     return _isCreated;
 }
 
+void ShaderProgram::SetUniform(const std::string &name, const glm::mat4 &mat)
+{
+    glUniformMatrix4fv(_uniforms[name], 1, GL_FALSE, &mat[0][0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::mat3 &mat)
+{
+    glUniformMatrix3fv(_uniforms[name], 1, GL_FALSE, &mat[0][0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::mat2 &mat)
+{
+    glUniformMatrix2fv(_uniforms[name], 1, GL_FALSE, &mat[0][0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::vec4 &vec)
+{
+    glUniform4fv(_uniforms[name], 1, &vec[0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::vec3 &vec)
+{
+    glUniform3fv(_uniforms[name], 1, &vec[0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::vec2 &vec)
+{
+    glUniform2fv(_uniforms[name], 1, &vec[0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const float &val)
+{
+    glUniform1f(_uniforms[name], val);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const int &val)
+{
+    glUniform1i(_uniforms[name], val);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const unsigned &val)
+{
+    glUniform1ui(_uniforms[name], val);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const bool &val)
+{
+    glUniform1i(_uniforms[name], val);
+}
+
 bool ShaderProgram::CheckProgram()
 {
     GLint isLinked = 0;

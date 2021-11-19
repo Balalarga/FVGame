@@ -1,13 +1,17 @@
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
 
-#include "ShaderProgram.h"
 #include <vector>
+
+#include "ShaderProgram.h"
+#include "Transform.h"
+
 
 enum class DrawMode
 {
     Triangles, Quads, Lines, Points
 };
+
 
 class DrawableObject
 {
@@ -27,10 +31,13 @@ public:
 
     void Render();
 
-    ShaderProgram* GetShaderProgram();
+    inline ShaderProgram* GetShaderProgram() { return _shaderProgram; }
+    inline Transform& GetTransform() { return _transform; }
+
 
 private:
     ShaderProgram* _shaderProgram;
+    Transform _transform;
 
     unsigned _drawMode;
 

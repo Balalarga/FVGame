@@ -14,10 +14,10 @@ void InitObjects(MainWindow* window)
     // Then objects
 
     vector<float>data{
-        -1, -1, 0, 1, 1, 0, 1,
-        -1,  1, 0, 1, 1, 0, 1,
-         1,  1, 0, 1, 0, 1, 1,
-         1, -1, 0, 0, 1, 1, 1
+        -1, -1, 1, 1, 1, 0, 1,
+        -1,  1, 1, 1, 1, 0, 1,
+         1,  1, 1, 1, 0, 1, 1,
+         1, -1, 1, 0, 1, 1, 1
     };
 
     DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultShaderProgram"));

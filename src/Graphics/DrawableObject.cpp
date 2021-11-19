@@ -89,8 +89,3 @@ void DrawableObject::Render()
     GLCall(glDrawArrays(_drawMode, 0, _verticesFilling));
     GLCall(glBindVertexArray(0));
 }
-
-ShaderProgram *DrawableObject::GetShaderProgram()
-{
-    return _shaderProgram;
-}

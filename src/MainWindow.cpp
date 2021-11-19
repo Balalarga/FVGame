@@ -45,7 +45,7 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
         cout<<"GLEW initialization error!!!!"<<endl;
         exit(-1);
     }
-    cout<<"OpenGL Version: "<<glGetString(GL_VERSION)<<endl;
+    cout<<"Dirver Version: "<<glGetString(GL_VERSION)<<endl;
 
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
@@ -71,6 +71,7 @@ void MainWindow::RegisterCallbacks()
     glfwSetFramebufferSizeCallback(_window, [](GLFWwindow*, int width, int height)
     {
         glViewport(0, 0, width, height);
+        MainWindow::Get()->GetScene()->GetCamera().ResizeViewport(width, height);
     });
 
     glfwSetKeyCallback(_window, [](GLFWwindow*, int key, int scancode, int action, int mods){

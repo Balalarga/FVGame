@@ -7,7 +7,6 @@ out vec4 vColor;
 
 uniform mat4 MVP;
 
-
 void main(void)
 {
     gl_Position = MVP * vec4(iPosition, 1.0);

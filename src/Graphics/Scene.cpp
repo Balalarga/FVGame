@@ -21,12 +21,9 @@ void Scene::Render()
     for(auto& obj: _objects)
     {
         obj->BindShader();
+        obj->GetShaderProgram()->SetUniform("MVP", obj->GetTransform().Matrix() * _camera.Projection());
         obj->Render();
         obj->ReleaseShader();
     }
 }
 
-ShaderStorage &Scene::GetShaderStorage()
-{
-    return _shaderStorage;
-}
