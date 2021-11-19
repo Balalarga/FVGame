@@ -5,11 +5,11 @@ layout(location = 1) in vec4 iColor;
 
 out vec4 vColor;
 
-uniform mat4 worldToView;
+uniform mat4 MVP;
 
 
 void main(void)
 {
-    gl_Position = vec4(iPosition, 1.0);
+    gl_Position = MVP * vec4(iPosition, 1.0);
     vColor = iColor;
 }
