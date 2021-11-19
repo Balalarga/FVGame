@@ -12,6 +12,7 @@ using namespace std;
 std::unique_ptr<MainWindow> MainWindow::_selfInstance;
 
 MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
+    _window(nullptr),
     _windowTitle(title),
     _windowSize(windowSize),
     _useImgui(false),
@@ -137,6 +138,11 @@ void MainWindow::Run()
 void MainWindow::UseImGui(bool use)
 {
     _useImgui = use;
+}
+
+bool MainWindow::IsCreated()
+{
+    return _selfInstance != nullptr;
 }
 
 void MainWindow::Clear()

@@ -3,13 +3,18 @@
 
 #include <string>
 
+#include "rapidjson/document.h"
 
 class ShaderLoader
 {
 public:
     ShaderLoader() = delete;
 
-    static void ReadShaders(const std::string& pathToJson);
+    static void LoadShadersFrom(const std::string& pathToJson);
+
+private:
+    static void LoadShaders(const rapidjson::Value &root);
+    static void LoadShaderProgram(const rapidjson::Value &root);
 };
 
 #endif // SHADERLOADER_H

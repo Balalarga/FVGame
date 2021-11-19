@@ -22,6 +22,8 @@ public:
     void Run();
     void UseImGui(bool use);
 
+    static bool IsCreated();
+
 
 protected:
     virtual void Clear();
@@ -45,7 +47,7 @@ private:
 
     void RegisterCallbacks();
 
-    GLFWwindow* _window = nullptr;
+    GLFWwindow* _window;
     glm::uvec2 _windowSize;
     std::string _windowTitle;
     bool _useImgui;
