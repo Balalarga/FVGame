@@ -52,6 +52,8 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     ImGui_ImplOpenGL3_Init("#version 330 core");
     ImGui::StyleColorsDark();
 
+    _scene->GetCamera().ResizeViewport(_windowSize.x, _windowSize.y);
+
     glClearColor(0.2, 0.2, 0.2, 1);
     glFrontFace(GL_CW);
     glEnable(GL_CULL_FACE);

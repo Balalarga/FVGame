@@ -14,16 +14,17 @@ void InitObjects(MainWindow* window)
     // Then objects
 
     vector<float>data{
-        -1, -1, 1, 1, 1, 0, 1,
-        -1,  1, 1, 1, 1, 0, 1,
-         1,  1, 1, 1, 0, 1, 1,
-         1, -1, 1, 0, 1, 1, 1
+        -3, -3, 0, 1, 1, 0, 1,
+        -3,  3, 0, 1, 1, 0, 1,
+         3,  3, 0, 1, 0, 1, 1,
+         3, -3, 0, 0, 1, 1, 1
     };
 
     DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultShaderProgram"));
     obj1->SetPrimitive(DrawMode::Quads);
     obj1->Create(data);
     scene->AddObject(obj1);
+    obj1->GetTransform().Move({10, 0, 0});
 }
 
 

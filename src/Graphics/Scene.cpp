@@ -1,5 +1,8 @@
 #include "Scene.h"
 
+#include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
+
 Scene::Scene()
 {
 
@@ -18,10 +21,12 @@ void Scene::AddObject(DrawableObject *object)
 
 void Scene::Render()
 {
+    glm::mat4 pv = _camera.Projection() * glm::translate(glm::mat4(1.f), glm::vec3(0, 0, -4));
     for(auto& obj: _objects)
     {
+        glm::mat4 mvp = pv * obj->GetTransform().Matrix();
         obj->BindShader();
-        obj->GetShaderProgram()->SetUniform("MVP", obj->GetTransform().Matrix() * _camera.Projection());
+        obj->GetShaderProgram()->SetUniform("MVP", mvp);
         obj->Render();
         obj->ReleaseShader();
     }
