@@ -20,7 +20,6 @@ public:
     inline ShaderStorage& GetShaderStorage() { return _shaderStorage; }
     inline Camera& GetCamera() { return _camera; }
 
-
 private:
     Camera _camera;
     ShaderStorage _shaderStorage;

@@ -1,6 +1,8 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "Transform.h"
+
 #include <glm/glm.hpp>
 
 
@@ -17,8 +19,11 @@ public:
     void SetFarPlane(float far);
     void SetFov(float fov);
 
+    inline Transform& GetTransform() { return _transform; };
 
 private:
+    Transform _transform;
+
     void UpdateProjection();
 
     glm::mat4 _projection;
