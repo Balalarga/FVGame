@@ -21,14 +21,13 @@ public:
     virtual void Create(const std::vector<float>& data);
     virtual void Destroy();
 
+    virtual void Render();
+
     bool IsCreated() const;
 
     void SetPrimitive(DrawMode drawType);
-
     void BindShader();
     void ReleaseShader();
-
-    void Render();
 
     inline ShaderProgram* GetShaderProgram() { return _shaderProgram; }
 

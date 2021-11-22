@@ -13,6 +13,31 @@ Camera::Camera():
     UpdateProjection();
 }
 
+void Camera::OnKey(int key, int scancode, int action, int mods)
+{
+    if(action == GLFW_PRESS)
+    {
+        if(key == GLFW_KEY_W)
+        {
+            SetVelocity(glm::vec3(0, 0, -1));
+        }
+        else if(key == GLFW_KEY_S)
+        {
+            SetVelocity(glm::vec3(0, 0, 1));
+        }
+        else if(key == GLFW_KEY_A)
+        {
+            SetVelocity(glm::vec3(-1, 0, 0));
+        }
+        else if(key == GLFW_KEY_D)
+        {
+            SetVelocity(glm::vec3(1, 0, 0));
+        }
+    }
+    else if(action == GLFW_RELEASE)
+        DiscardVelocity();
+}
+
 void Camera::ResizeViewport(unsigned width, unsigned height)
 {
     _aspectRatio = static_cast<float>(width) /

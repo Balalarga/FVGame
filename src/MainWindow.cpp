@@ -39,7 +39,7 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     }
 
     glfwMakeContextCurrent(_window);
-    glfwSwapInterval(1);
+//    glfwSwapInterval(1);
 
     if(glewInit() != GLEW_OK)
     {
@@ -68,29 +68,29 @@ void MainWindow::RegisterCallbacks()
 {
     glfwSetWindowSizeCallback(_window, [](GLFWwindow*, int width, int height)
     {
-        MainWindow::Get()->OnResize(width, height);
+        MainWindow::Get()->_scene.OnWindowResize(width, height);
     });
 
     glfwSetFramebufferSizeCallback(_window, [](GLFWwindow*, int width, int height)
     {
         glViewport(0, 0, width, height);
-        MainWindow::Get()->GetScene()->GetCamera().ResizeViewport(width, height);
+        MainWindow::Get()->_scene.OnViewportResize(width, height);
     });
 
     glfwSetKeyCallback(_window, [](GLFWwindow*, int key, int scancode, int action, int mods){
-        MainWindow::Get()->OnKey(key, scancode, action, mods);
+        MainWindow::Get()->_scene.OnKey(key, scancode, action, mods);
     });
 
     glfwSetMouseButtonCallback(_window, [](GLFWwindow*, int button, int action, int mods){
-        MainWindow::Get()->OnMouseButton(button, action, mods);
+        MainWindow::Get()->_scene.OnMouseButton(button, action, mods);
     });
 
     glfwSetScrollCallback(_window, [](GLFWwindow*, double xoffset, double yoffset){
-        MainWindow::Get()->OnScroll(xoffset, yoffset);
+        MainWindow::Get()->_scene.OnScroll(xoffset, yoffset);
     });
 
     glfwSetCursorPosCallback(_window, [](GLFWwindow*, double xpos, double ypos){
-        MainWindow::Get()->OnMouseMove(xpos, ypos);
+        MainWindow::Get()->_scene.OnMouseMove(xpos, ypos);
     });
 }
 
@@ -122,8 +122,22 @@ Scene *MainWindow::GetScene()
 
 void MainWindow::Run()
 {
+    double upsTime = 1./60.;
+
+    double frameTime = 0;
+    double updateTimer = 0.;
     while (!glfwWindowShouldClose(_window))
     {
+        double frameStart = glfwGetTime();
+
+        HandleEvents();
+
+        if(updateTimer >= upsTime)
+        {
+            _scene.Update(updateTimer);
+            updateTimer = 0;
+        }
+
         Clear();
         if(_useImgui)
             ClearImGui();
@@ -135,7 +149,8 @@ void MainWindow::Run()
 
         SwapBuffers();
 
-        HandleEvents();
+        frameTime = glfwGetTime() - frameStart;
+        updateTimer += frameTime;
     }
 }
 
@@ -152,11 +167,6 @@ bool MainWindow::IsCreated()
 void MainWindow::Clear()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void MainWindow::Update(float dt)
-{
-
 }
 
 void MainWindow::HandleEvents()
@@ -183,44 +193,4 @@ void MainWindow::RenderImGui()
 void MainWindow::SwapBuffers()
 {
     glfwSwapBuffers(_window);
-}
-
-void MainWindow::OnResize(int width, int height)
-{
-
-}
-
-void MainWindow::OnKey(int key, int scancode, int action, int mods)
-{
-    if(key == GLFW_KEY_W)
-    {
-        _scene.GetCamera().Move(glm::vec3(0, 0, -0.1));
-    }
-    else if(key == GLFW_KEY_S)
-    {
-        _scene.GetCamera().Move(glm::vec3(0, 0, 0.1));
-    }
-    else if(key == GLFW_KEY_A)
-    {
-        _scene.GetCamera().Move(glm::vec3(-0.1, 0, 0));
-    }
-    else if(key == GLFW_KEY_D)
-    {
-        _scene.GetCamera().Move(glm::vec3(0.1, 0, 0));
-    }
-}
-
-void MainWindow::OnMouseButton(int button, int action, int mods)
-{
-
-}
-
-void MainWindow::OnScroll(double xoffset, double yoffset)
-{
-
-}
-
-void MainWindow::OnMouseMove(double xpos, double ypos)
-{
-
 }

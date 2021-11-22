@@ -31,18 +31,11 @@ public:
 protected:
     void SwapBuffers();
 
-    virtual void Clear();
-    virtual void Update(float dt);
-    virtual void HandleEvents();
-    virtual void ClearImGui();
-    virtual void RenderImGui();
-
-    // Events
-    virtual void OnResize(int width, int height);
-    virtual void OnKey(int key, int scancode, int action, int mods);
-    virtual void OnMouseButton(int button, int action, int mods);
-    virtual void OnScroll(double xoffset, double yoffset);
-    virtual void OnMouseMove(double xpos, double ypos);
+    void Clear();
+    void Update(float dt);
+    void HandleEvents();
+    void ClearImGui();
+    void RenderImGui();
 
 
 private:

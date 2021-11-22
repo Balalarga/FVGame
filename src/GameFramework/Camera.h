@@ -1,12 +1,14 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "BaseObject.h"
+#include "PhysicsObject.h"
 
-class Camera: public BaseObject
+class Camera: public PhysicsObject
 {
 public:
     Camera();
+
+    void OnKey(int key, int scancode, int action, int mods) override;
 
     inline const glm::mat4& ViewProject() { return _viewProjMatrix; }
 

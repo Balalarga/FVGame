@@ -14,7 +14,6 @@ void InitObjects(MainWindow* window)
     scene->GetCamera().Move({0, 0, 4});
 
     // Then objects
-
     vector<float>data{
         -3, -3, 0, 1, 1, 0, 1,
         -3,  3, 0, 1, 1, 0, 1,
@@ -26,7 +25,6 @@ void InitObjects(MainWindow* window)
     obj1->SetPrimitive(DrawMode::Quads);
     obj1->Create(data);
     scene->AddObject(obj1);
-    obj1->Move({1, 1, -4});
 }
 
 

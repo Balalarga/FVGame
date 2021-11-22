@@ -1,6 +1,7 @@
 #ifndef BASEOBJECT_H
 #define BASEOBJECT_H
 
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
 
@@ -9,6 +10,12 @@ class BaseObject
 public:
     BaseObject();
     virtual ~BaseObject() = default;
+
+    virtual void Update(float dt) {}
+    virtual void OnKey(int key, int scancode, int action, int mods) {}
+    virtual void OnMouseButton(int button, int action, int mods) {}
+    virtual void OnScroll(float xoffset, float yoffset) {}
+    virtual void OnMouseMove(float xpos, float ypos) {}
 
     inline const glm::mat4& Transform()   { return _matrix; }
     inline const glm::vec3& GetPosition() { return _position; }
