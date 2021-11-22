@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "ShaderProgram.h"
-#include "Transform.h"
+#include "BaseObject.h"
 
 
 enum class DrawMode
@@ -13,13 +13,12 @@ enum class DrawMode
 };
 
 
-class DrawableObject
+class DrawableObject: public BaseObject
 {
 public:
     DrawableObject(ShaderProgram *shaderProgram);
 
     virtual void Create(const std::vector<float>& data);
-
     virtual void Destroy();
 
     bool IsCreated() const;
@@ -32,17 +31,14 @@ public:
     void Render();
 
     inline ShaderProgram* GetShaderProgram() { return _shaderProgram; }
-    inline Transform& GetTransform() { return _transform; }
 
 
 private:
     ShaderProgram* _shaderProgram;
-    Transform _transform;
-
-    unsigned _drawMode;
 
     bool _isCreated;
 
+    unsigned _drawMode;
     unsigned _vaoHandler;
     unsigned _vboHandler;
     unsigned _verticesCount;

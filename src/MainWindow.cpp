@@ -193,19 +193,19 @@ void MainWindow::OnKey(int key, int scancode, int action, int mods)
 {
     if(key == GLFW_KEY_W)
     {
-        _scene->GetCamera().GetTransform().Move(glm::vec3(0, 0, -0.1));
+        _scene->GetCamera().Move(glm::vec3(0, 0, -0.1));
     }
     else if(key == GLFW_KEY_S)
     {
-        _scene->GetCamera().GetTransform().Move(glm::vec3(0, 0, 0.1));
+        _scene->GetCamera().Move(glm::vec3(0, 0, 0.1));
     }
     else if(key == GLFW_KEY_A)
     {
-        _scene->GetCamera().GetTransform().Move(glm::vec3(-0.1, 0, 0));
+        _scene->GetCamera().Move(glm::vec3(-0.1, 0, 0));
     }
     else if(key == GLFW_KEY_D)
     {
-        _scene->GetCamera().GetTransform().Move(glm::vec3(0.1, 0, 0));
+        _scene->GetCamera().Move(glm::vec3(0.1, 0, 0));
     }
 }
 

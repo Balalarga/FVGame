@@ -1,17 +1,14 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Transform.h"
+#include "BaseObject.h"
 
-#include <glm/glm.hpp>
-
-
-class Camera
+class Camera: public BaseObject
 {
 public:
     Camera();
 
-    inline const glm::mat4& Projection() { return _projection; }
+    inline const glm::mat4& ViewProject() { return _viewProjMatrix; }
 
     void ResizeViewport(unsigned width, unsigned height);
 
@@ -19,14 +16,16 @@ public:
     void SetFarPlane(float far);
     void SetFov(float fov);
 
-    inline Transform& GetTransform() { return _transform; };
+protected:
+    virtual void UpdateMatrix() override;
+
 
 private:
-    Transform _transform;
-
+    void UpdataViewProjection();
     void UpdateProjection();
 
     glm::mat4 _projection;
+    glm::mat4 _viewProjMatrix;
 
     float _aspectRatio;
     float _nearPlane;

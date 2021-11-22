@@ -11,7 +11,7 @@ void InitObjects(MainWindow* window)
     Scene* scene = window->GetScene();
     ShaderStorage& shaderStorage = scene->GetShaderStorage();
 
-    scene->GetCamera().GetTransform().Move({0, 0, 4});
+    scene->GetCamera().Move({0, 0, 4});
 
     // Then objects
 
@@ -26,7 +26,7 @@ void InitObjects(MainWindow* window)
     obj1->SetPrimitive(DrawMode::Quads);
     obj1->Create(data);
     scene->AddObject(obj1);
-    obj1->GetTransform().Move({1, 1, -4});
+    obj1->Move({1, 1, -4});
 }
 
 

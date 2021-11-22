@@ -21,10 +21,9 @@ void Scene::AddObject(DrawableObject *object)
 
 void Scene::Render()
 {
-    glm::mat4 pv = _camera.Projection() * glm::inverse(_camera.GetTransform().Matrix());
     for(auto& obj: _objects)
     {
-        glm::mat4 mvp =  pv * obj->GetTransform().Matrix();
+        glm::mat4 mvp =  _camera.ViewProject() * obj->Transform();
         obj->BindShader();
         obj->GetShaderProgram()->SetUniform("MVP", mvp);
         obj->Render();
