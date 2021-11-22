@@ -1,7 +1,10 @@
-#include "DrawableObject.h"
+#include "OpenglDrawable.h"
+
 
 #include <GL/glew.h>
+
 #include "ErrorHandle.h"
+
 
 unsigned GetDrawMode(DrawMode type)
 {
@@ -18,7 +21,7 @@ unsigned GetDrawMode(DrawMode type)
 }
 
 
-DrawableObject::DrawableObject(ShaderProgram *shaderProgram):
+OpenglDrawable::OpenglDrawable(ShaderProgram *shaderProgram):
     _shaderProgram(shaderProgram),
     _drawMode(GL_TRIANGLES),
     _isCreated(false),
@@ -30,7 +33,7 @@ DrawableObject::DrawableObject(ShaderProgram *shaderProgram):
 
 }
 
-void DrawableObject::Create(const std::vector<float> &data)
+void OpenglDrawable::Create(const std::vector<float> &data)
 {
     GLCall(glGenVertexArrays(1, &_vaoHandler));
     GLCall(glBindVertexArray(_vaoHandler));
@@ -58,32 +61,32 @@ void DrawableObject::Create(const std::vector<float> &data)
     _verticesCount = _verticesFilling;
 }
 
-void DrawableObject::Destroy()
+void OpenglDrawable::Destroy()
 {
     GLCall(glDeleteVertexArrays(1, &_vaoHandler));
 }
 
-bool DrawableObject::IsCreated() const
+bool OpenglDrawable::IsCreated() const
 {
     return _isCreated;
 }
 
-void DrawableObject::SetPrimitive(DrawMode drawType)
+void OpenglDrawable::SetPrimitive(DrawMode drawType)
 {
     _drawMode = GetDrawMode(drawType);
 }
 
-void DrawableObject::BindShader()
+void OpenglDrawable::BindShader()
 {
     _shaderProgram->Bind();
 }
 
-void DrawableObject::ReleaseShader()
+void OpenglDrawable::ReleaseShader()
 {
     _shaderProgram->Release();
 }
 
-void DrawableObject::Render()
+void OpenglDrawable::Render()
 {
     GLCall(glBindVertexArray(_vaoHandler));
     GLCall(glDrawArrays(_drawMode, 0, _verticesFilling));

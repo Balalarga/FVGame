@@ -31,7 +31,7 @@ void ShaderLoader::LoadShadersFrom(const std::string &pathToJson)
 
 void ShaderLoader::LoadShaders(const Value& root)
 {
-    ShaderStorage& storage = MainWindow::Get()->GetScene()->GetShaderStorage();
+    ShaderStorage& storage = MainWindow::Get()->GetShaderStorage();
 
     auto GetShaderType = [](const std::string& typeName){
         if(typeName == "Vertex")
@@ -67,7 +67,7 @@ void ShaderLoader::LoadShaders(const Value& root)
 
 void ShaderLoader::LoadShaderProgram(const Value& root)
 {
-    ShaderStorage& storage = MainWindow::Get()->GetScene()->GetShaderStorage();
+    ShaderStorage& storage = MainWindow::Get()->GetShaderStorage();
 
     auto GetLayoutItemType = [](const std::string& typeName){
         if(typeName == "Float")

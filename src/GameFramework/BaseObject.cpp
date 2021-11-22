@@ -8,7 +8,7 @@ BaseObject::BaseObject():
     _scale({1, 1, 1}),
     _rotation({0, 0, 0})
 {
-    UpdateMatrix();
+    BaseObject::UpdateMatrix();
 }
 
 void BaseObject::SetPosition(const glm::vec3 &newPosition)

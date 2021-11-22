@@ -8,7 +8,9 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "Graphics/Scene.h"
+#include "Graphics/ShaderStorage.h"
+#include "GameFramework.h"
+
 
 class MainWindow
 {
@@ -23,15 +25,17 @@ public:
     void UseImGui(bool use);
 
     static bool IsCreated();
+    inline ShaderStorage& GetShaderStorage() { return _shaderStorage; }
 
 
 protected:
+    void SwapBuffers();
+
     virtual void Clear();
     virtual void Update(float dt);
     virtual void HandleEvents();
     virtual void ClearImGui();
     virtual void RenderImGui();
-    void SwapBuffers();
 
     // Events
     virtual void OnResize(int width, int height);
@@ -48,11 +52,13 @@ private:
     void RegisterCallbacks();
 
     GLFWwindow* _window;
-    glm::uvec2 _windowSize;
+    glm::uvec2  _windowSize;
     std::string _windowTitle;
+
     bool _useImgui;
 
-    std::unique_ptr<Scene> _scene;
+    Scene _scene;
+    ShaderStorage _shaderStorage;
 };
 
 #endif // MAINWINDOW_H

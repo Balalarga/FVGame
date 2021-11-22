@@ -3,10 +3,12 @@
 
 #include <glm/glm.hpp>
 
+
 class BaseObject
 {
 public:
     BaseObject();
+    virtual ~BaseObject() = default;
 
     inline const glm::mat4& Transform()   { return _matrix; }
     inline const glm::vec3& GetPosition() { return _position; }

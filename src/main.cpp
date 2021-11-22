@@ -9,7 +9,7 @@ using namespace std;
 void InitObjects(MainWindow* window)
 {
     Scene* scene = window->GetScene();
-    ShaderStorage& shaderStorage = scene->GetShaderStorage();
+    ShaderStorage& shaderStorage = window->GetShaderStorage();
 
     scene->GetCamera().Move({0, 0, 4});
 
@@ -35,7 +35,7 @@ int main()
     auto* window = MainWindow::Create("FV Game", {1280, 720});
 
     ShaderLoader::LoadShadersFrom("../assets/shaderConfig.json");
-    window->GetScene()->GetShaderStorage().CompileAll();
+    window->GetShaderStorage().CompileAll();
 
     InitObjects(window);
 

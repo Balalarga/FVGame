@@ -1,10 +1,9 @@
-#ifndef DRAWABLEOBJECT_H
-#define DRAWABLEOBJECT_H
+#ifndef OPENGLDRAWABLE_H
+#define OPENGLDRAWABLE_H
 
 #include <vector>
 
 #include "ShaderProgram.h"
-#include "BaseObject.h"
 
 
 enum class DrawMode
@@ -13,10 +12,11 @@ enum class DrawMode
 };
 
 
-class DrawableObject: public BaseObject
+class OpenglDrawable
 {
 public:
-    DrawableObject(ShaderProgram *shaderProgram);
+    OpenglDrawable(ShaderProgram *shaderProgram);
+    virtual ~OpenglDrawable() = default;
 
     virtual void Create(const std::vector<float>& data);
     virtual void Destroy();
@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif // DRAWABLEOBJECT_H
+#endif // OPENGLDRAWABLE_H

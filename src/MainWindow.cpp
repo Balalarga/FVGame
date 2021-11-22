@@ -9,14 +9,15 @@
 
 using namespace std;
 
+
 std::unique_ptr<MainWindow> MainWindow::_selfInstance;
+
 
 MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     _window(nullptr),
     _windowTitle(title),
     _windowSize(windowSize),
-    _useImgui(false),
-    _scene(make_unique<Scene>())
+    _useImgui(false)
 {
     if (!glfwInit())
     {
@@ -52,7 +53,7 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     ImGui_ImplOpenGL3_Init("#version 330 core");
     ImGui::StyleColorsDark();
 
-    _scene->GetCamera().ResizeViewport(_windowSize.x, _windowSize.y);
+    _scene.GetCamera().ResizeViewport(_windowSize.x, _windowSize.y);
 
     glClearColor(0.2, 0.2, 0.2, 1);
     glFrontFace(GL_CW);
@@ -116,7 +117,7 @@ MainWindow *MainWindow::Get()
 
 Scene *MainWindow::GetScene()
 {
-    return _scene.get();
+    return &_scene;
 }
 
 void MainWindow::Run()
@@ -127,7 +128,7 @@ void MainWindow::Run()
         if(_useImgui)
             ClearImGui();
 
-        _scene->Render();
+        _scene.Render();
 
         if(_useImgui)
             RenderImGui();
@@ -193,19 +194,19 @@ void MainWindow::OnKey(int key, int scancode, int action, int mods)
 {
     if(key == GLFW_KEY_W)
     {
-        _scene->GetCamera().Move(glm::vec3(0, 0, -0.1));
+        _scene.GetCamera().Move(glm::vec3(0, 0, -0.1));
     }
     else if(key == GLFW_KEY_S)
     {
-        _scene->GetCamera().Move(glm::vec3(0, 0, 0.1));
+        _scene.GetCamera().Move(glm::vec3(0, 0, 0.1));
     }
     else if(key == GLFW_KEY_A)
     {
-        _scene->GetCamera().Move(glm::vec3(-0.1, 0, 0));
+        _scene.GetCamera().Move(glm::vec3(-0.1, 0, 0));
     }
     else if(key == GLFW_KEY_D)
     {
-        _scene->GetCamera().Move(glm::vec3(0.1, 0, 0));
+        _scene.GetCamera().Move(glm::vec3(0.1, 0, 0));
     }
 }
 
