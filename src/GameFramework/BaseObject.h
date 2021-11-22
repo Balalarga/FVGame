@@ -12,10 +12,6 @@ public:
     virtual ~BaseObject() = default;
 
     virtual void Update(float dt) {}
-    virtual void OnKey(int key, int scancode, int action, int mods) {}
-    virtual void OnMouseButton(int button, int action, int mods) {}
-    virtual void OnScroll(float xoffset, float yoffset) {}
-    virtual void OnMouseMove(float xpos, float ypos) {}
 
     inline const glm::mat4& Transform()   { return _matrix; }
     inline const glm::vec3& GetPosition() { return _position; }
