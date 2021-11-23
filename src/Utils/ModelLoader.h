@@ -10,7 +10,10 @@ public:
     ModelLoader() = delete;
 
     template<class T>
-    static T* LoadFromFile(const std::string& file);
+    static T* LoadFromFile(const std::string& file)
+    {
+        Files::ReadFile(file);
+    }
 
 };
 
