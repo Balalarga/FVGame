@@ -2,3 +2,6 @@
 	path = Core
 	url = git@github.com:Balalarga/RanokCore.git
 	branch = master
+[submodule "3rdParty/VoxelLib"]
+	path = 3rdParty/VoxelLib
+	url = https://github.com/Balalarga/RanokCore.git
