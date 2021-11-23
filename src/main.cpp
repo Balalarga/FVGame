@@ -2,6 +2,7 @@
 
 #include "MainWindow.h"
 #include "Utils/ShaderLoader.h"
+#include "Utils/ModelLoader.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ void InitObjects(MainWindow* window)
     Scene* scene = window->GetScene();
     ShaderStorage& shaderStorage = window->GetShaderStorage();
 
-    scene->GetCamera().Move({0, 0, 4});
+    scene->GetCamera().Move({0, 0, 5});
 
     // Then objects
     vector<float>data{
@@ -25,6 +26,14 @@ void InitObjects(MainWindow* window)
     obj1->SetPrimitive(DrawMode::Quads);
     obj1->Create(data);
     scene->AddObject(obj1);
+
+    DrawableObject* obj = ModelLoader::LoadFromFile<DrawableObject>("../assets/models/sphere5.mbin",
+                                                                    shaderStorage.GetShaderProgram("VoxelSP"));
+    if(obj)
+    {
+        cout<<"Model loaded\n";
+        scene->AddObject(obj);
+    }
 }
 
 

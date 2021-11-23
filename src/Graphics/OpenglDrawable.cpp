@@ -59,6 +59,7 @@ void OpenglDrawable::Create(const std::vector<float> &data)
     }
     _verticesFilling = data.size() / layout.GetWidth();
     _verticesCount = _verticesFilling;
+    _isCreated = true;
 }
 
 void OpenglDrawable::Destroy()
