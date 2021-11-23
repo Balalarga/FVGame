@@ -37,6 +37,9 @@ file(GLOB_RECURSE PROJECT_SOURCES src/*.cpp src/*.h assets/*)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${IMGUI_SOURCES})
 
+add_subdirectory(3rdParty/VoxelLib/RanokCoreLib RanokCore)
+target_link_libraries(${PROJECT_NAME} PRIVATE RanokCore)
+
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                   COMMAND ${CMAKE_COMMAND} -E copy_directory
                       ${CMAKE_SOURCE_DIR}/3rdParty/GLFW/bin/ $<TARGET_FILE_DIR:${PROJECT_NAME}>)
