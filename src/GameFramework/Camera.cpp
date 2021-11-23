@@ -14,29 +14,29 @@ Camera::Camera():
     auto* input = InputHandler::Get();
 
     input->Key(GLFW_KEY_W).AddOnPress([this](){
-        AddVelocity(glm::vec3(0, 1, 0));
+        AddVelocity({0, 1, 0});
     });
     input->Key(GLFW_KEY_S).AddOnPress([this](){
-        AddVelocity(glm::vec3(0, -1, 0));
+        AddVelocity({0, -1, 0});
     });
     input->Key(GLFW_KEY_D).AddOnPress([this](){
-        AddVelocity(glm::vec3(1, 0, 0));
+        AddVelocity({1, 0, 0});
     });
     input->Key(GLFW_KEY_A).AddOnPress([this](){
-        AddVelocity(glm::vec3(-1, 0, 0));
+        AddVelocity({-1, 0, 0});
     });
 
     input->Key(GLFW_KEY_W).AddOnRelease([this](){
-        AddVelocity(glm::vec3(0, -1, 0));
+        AddVelocity({0, -1, 0});
     });
     input->Key(GLFW_KEY_S).AddOnRelease([this](){
-        AddVelocity(glm::vec3(0, 1, 0));
+        AddVelocity({0, 1, 0});
     });
     input->Key(GLFW_KEY_D).AddOnRelease([this](){
-        AddVelocity(glm::vec3(-1, 0, 0));
+        AddVelocity({-1, 0, 0});
     });
     input->Key(GLFW_KEY_A).AddOnRelease([this](){
-        AddVelocity(glm::vec3(1, 0, 0));
+        AddVelocity({1, 0, 0});
     });
 }
 

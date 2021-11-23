@@ -21,7 +21,7 @@ void InitObjects(MainWindow* window)
          3, -3, 0, 0, 1, 1, 1
     };
 
-    DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultShaderProgram"));
+    DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultSP"));
     obj1->SetPrimitive(DrawMode::Quads);
     obj1->Create(data);
     scene->AddObject(obj1);

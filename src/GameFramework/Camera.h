@@ -10,7 +10,6 @@ public:
 
     inline const glm::mat4& ViewProject() { return _viewProjMatrix; }
 
-
     void ResizeViewport(unsigned width, unsigned height);
     void SetNearPlane(float near);
     void SetFarPlane(float far);

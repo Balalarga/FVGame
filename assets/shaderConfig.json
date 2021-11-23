@@ -2,24 +2,40 @@
     "Shaders":
     [
         {
-            "Tag": "vShaderDefault",
+            "Tag": "vDefault",
             "Type": "Vertex",
             "Path": "../assets/shaders/default.vert"
         },
         {
-            "Tag": "fShaderDefault",
+            "Tag": "fDefault",
             "Type": "Fragment",
             "Path": "../assets/shaders/default.frag"
+        },
+
+        {
+            "Tag": "vVoxel",
+            "Type": "Vertex",
+            "Path": "../assets/shaders/voxel.vert"
+        },
+        {
+            "Tag": "fVoxel",
+            "Type": "Fragment",
+            "Path": "../assets/shaders/voxel.frag"
+        },
+        {
+            "Tag": "gVoxel",
+            "Type": "Geometry",
+            "Path": "../assets/shaders/voxel.geom"
         }
     ],
     "ShaderPrograms":
     [
         {
-            "Tag": "DefaultShaderProgram",
+            "Tag": "DefaultSP",
             "Shaders":
             [
-                "vShaderDefault",
-                "fShaderDefault"
+                "vDefault",
+                "fDefault"
             ],
             "Layout":
             [
@@ -35,6 +51,31 @@
             "Uniforms":
             [
                 "MVP"
+            ]
+        },
+        {
+            "Tag": "VoxelSP",
+            "Shaders":
+            [
+                "vVoxel",
+                "fVoxel",
+                "gVoxel"
+            ],
+            "Layout":
+            [
+                {
+                    "Count": 3,
+                    "Type": "Float"
+                },
+                {
+                    "Count": 4,
+                    "Type": "Float"
+                }
+            ],
+            "Uniforms":
+            [
+                "MVP",
+                "voxSize"
             ]
         }
     ]
