@@ -1,7 +1,7 @@
 #include "BaseObject.h"
 
 #include <glm/gtc/matrix_transform.hpp>
-
+#include <iostream>
 
 BaseObject::BaseObject():
     _position({0, 0, 0}),

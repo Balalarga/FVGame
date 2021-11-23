@@ -8,12 +8,10 @@ class Camera: public PhysicsObject
 public:
     Camera();
 
-    void OnKey(int key, int scancode, int action, int mods) override;
-
     inline const glm::mat4& ViewProject() { return _viewProjMatrix; }
 
-    void ResizeViewport(unsigned width, unsigned height);
 
+    void ResizeViewport(unsigned width, unsigned height);
     void SetNearPlane(float near);
     void SetFarPlane(float far);
     void SetFov(float fov);

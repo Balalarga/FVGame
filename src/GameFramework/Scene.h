@@ -20,10 +20,6 @@ public:
     void Update(float dt);
     void OnWindowResize(int width, int height);
     void OnViewportResize(int width, int height);
-    void OnKey(int key, int scancode, int action, int mods);
-    void OnMouseButton(int button, int action, int mods);
-    void OnScroll(double xoffset, double yoffset);
-    void OnMouseMove(double xpos, double ypos);
 
     inline Camera& GetCamera() { return _camera; }
 

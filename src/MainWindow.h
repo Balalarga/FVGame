@@ -18,13 +18,13 @@ public:
     ~MainWindow();
     static MainWindow* Create(const std::string& title, glm::uvec2 windowSize = {800, 600});
     static MainWindow* Get();
+    static bool IsCreated();
 
     Scene* GetScene();
 
     void Run();
     void UseImGui(bool use);
 
-    static bool IsCreated();
     inline ShaderStorage& GetShaderStorage() { return _shaderStorage; }
 
 

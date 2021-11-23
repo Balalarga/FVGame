@@ -78,19 +78,19 @@ void MainWindow::RegisterCallbacks()
     });
 
     glfwSetKeyCallback(_window, [](GLFWwindow*, int key, int scancode, int action, int mods){
-        MainWindow::Get()->_scene.OnKey(key, scancode, action, mods);
+        InputHandler::Get()->OnKey(key, scancode, action, mods);
     });
 
     glfwSetMouseButtonCallback(_window, [](GLFWwindow*, int button, int action, int mods){
-        MainWindow::Get()->_scene.OnMouseButton(button, action, mods);
+        InputHandler::Get()->OnMouseButton(button, action, mods);
     });
 
     glfwSetScrollCallback(_window, [](GLFWwindow*, double xoffset, double yoffset){
-        MainWindow::Get()->_scene.OnScroll(xoffset, yoffset);
+        InputHandler::Get()->OnScroll(xoffset, yoffset);
     });
 
     glfwSetCursorPosCallback(_window, [](GLFWwindow*, double xpos, double ypos){
-        MainWindow::Get()->_scene.OnMouseMove(xpos, ypos);
+        InputHandler::Get()->OnMouseMove(xpos, ypos);
     });
 }
 

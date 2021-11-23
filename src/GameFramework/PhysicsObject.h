@@ -11,8 +11,8 @@ public:
 
     void Update(float dt) override;
 
-    void SetVelocity(const glm::vec3 velocity);
-    void AddVelocity(const glm::vec3 velocity);
+    void SetVelocity(const glm::vec3& velocity);
+    void AddVelocity(const glm::vec3& velocity);
     void DiscardVelocity();
 
     inline const glm::vec3& GetVelocity() { return _velocity; }

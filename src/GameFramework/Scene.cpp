@@ -54,36 +54,3 @@ void Scene::OnWindowResize(int width, int height)
 {
 
 }
-
-void Scene::OnKey(int key, int scancode, int action, int mods)
-{
-    _camera.OnKey(key, scancode, action, mods);
-
-    for(auto& obj: _objects)
-        obj->OnKey(key, scancode, action, mods);
-}
-
-void Scene::OnMouseButton(int button, int action, int mods)
-{
-    _camera.OnMouseButton(button, action, mods);
-
-    for(auto& obj: _objects)
-        obj->OnMouseButton(button, action, mods);
-}
-
-void Scene::OnScroll(double xoffset, double yoffset)
-{
-    _camera.OnScroll(xoffset, yoffset);
-
-    for(auto& obj: _objects)
-        obj->OnScroll(xoffset, yoffset);
-}
-
-void Scene::OnMouseMove(double xpos, double ypos)
-{
-    _camera.OnMouseMove(xpos, ypos);
-
-    for(auto& obj: _objects)
-        obj->OnMouseMove(xpos, ypos);
-}
-

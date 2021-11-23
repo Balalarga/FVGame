@@ -3,6 +3,7 @@
 
 
 #include "GameFramework/DrawableObject.h"
+#include "GameFramework/Input/InputHandler.h"
 #include "GameFramework/BaseObject.h"
 #include "GameFramework/Camera.h"
 #include "GameFramework/Scene.h"
