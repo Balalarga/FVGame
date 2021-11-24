@@ -12,23 +12,24 @@ void InitObjects(MainWindow* window)
     Scene* scene = window->GetScene();
     ShaderStorage& shaderStorage = window->GetShaderStorage();
 
-    scene->GetCamera().Move({0, 0, 5});
+    scene->GetCamera().Move({0, 0, 4});
 
     // Then objects
-    vector<float>data{
-        -3, -3, 0, 1, 1, 0, 1,
-        -3,  3, 0, 1, 1, 0, 1,
-         3,  3, 0, 1, 0, 1, 1,
-         3, -3, 0, 0, 1, 1, 1
-    };
+//    vector<float>data{
+//        -3, -3, 0, 1, 1, 0, 1,
+//        -3,  3, 0, 1, 1, 0, 1,
+//         3,  3, 0, 1, 0, 1, 1,
+//         3, -3, 0, 0, 1, 1, 1
+//    };
 
-    DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultSP"));
-    obj1->SetPrimitive(DrawMode::Quads);
-    obj1->Create(data);
-    scene->AddObject(obj1);
+//    DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultSP"));
+//    obj1->SetPrimitive(DrawMode::Quads);
+//    obj1->Create(data);
+//    scene->AddObject(obj1);
 
-    DrawableObject* obj = ModelLoader::LoadFromFile<DrawableObject>("../assets/models/sphere5.mbin",
-                                                                    shaderStorage.GetShaderProgram("VoxelSP"));
+    DrawableObject* obj = ModelLoader::LoadRawFromFile<DrawableObject>("../assets/models/sphere3.mbin",
+                                                                       shaderStorage.GetShaderProgram("VoxelSP"),
+                                                                       Color::fromUint(220, 50, 50, 255));
     if(obj)
     {
         cout<<"Model loaded\n";

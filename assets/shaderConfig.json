@@ -40,10 +40,12 @@
             "Layout":
             [
                 {
+                    "Name": "Position",
                     "Count": 3,
                     "Type": "Float"
                 },
                 {
+                    "Name": "Color",
                     "Count": 4,
                     "Type": "Float"
                 }
@@ -58,23 +60,30 @@
             "Shaders":
             [
                 "vVoxel",
+                "gVoxel",
                 "fVoxel"
             ],
             "Layout":
             [
                 {
+                    "Name": "Position",
                     "Count": 3,
                     "Type": "Float"
                 },
                 {
+                    "Name": "Color",
                     "Count": 4,
+                    "Type": "Float"
+                },
+                {
+                    "Name": "VoxelSize",
+                    "Count": 1,
                     "Type": "Float"
                 }
             ],
             "Uniforms":
             [
-                "MVP",
-                "voxSize"
+                "MVP"
             ]
         }
     ]

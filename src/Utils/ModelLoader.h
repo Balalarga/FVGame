@@ -7,46 +7,55 @@
 
 #include "GameFramework/DrawableObject.h"
 #include "Space/SpaceManager.h"
+#include "Color.h"
 
 
 namespace ModelLoader
 {
 
 template<typename T, typename = std::enable_if_t<std::is_base_of<DrawableObject, T>::value>>
-T* LoadFromFile(const std::string& path, ShaderProgram* shader)
+T* LoadRawFromFile(const std::string& path,
+                   ShaderProgram* shader,
+                   const Color& color = Color::fromUint(255, 255, 255, 255))
 {
-    return nullptr;
     std::ifstream file(path, std::ios_base::binary);
     if(!file)
     {
         std::cout<<"Unable to open model "<<path<<"\n";
         return nullptr;
     }
-    auto& space = SpaceManager::Self();
-    file.read((char*)&space.metadata, sizeof(space.metadata));
+    ModelMetadata metadata;
+    file.read((char*)&metadata, sizeof(ModelMetadata));
+    SpaceManager& space = SpaceManager::Self();
+    space.SetMetadata(metadata);
     space.InitFromMetadata();
+    space.ActivateBuffer(SpaceManager::BufferType::ZoneBuffer);
 
-    std::vector<char> rawData(space.GetSpaceSize());
-    std::vector<float> resData;
-
-    file.read(rawData.data(), rawData.size() * sizeof(rawData[0]));
-
+    file.read(space.GetZoneBuffer(), space.GetBufferSize() * sizeof(char));
     file.close();
 
-    cl_float3 point;
-    for(int i = 0; i < rawData.size(); ++i)
+    std::vector<float> resData;
+    resData.reserve(shader->GetLayout().GetWidth() * metadata.zeroCount);
+
+    Vector3f point;
+    for(int i = 0; i < space.GetBufferSize(); ++i)
     {
-        if(rawData[i] == 0)
+        if(space.GetZone(i) == 0)
         {
+            // Position
             point = space.GetPointCoords(i);
             resData.push_back(point.x);
             resData.push_back(point.y);
             resData.push_back(point.z);
 
-            resData.push_back(1);
-            resData.push_back(1);
-            resData.push_back(1);
-            resData.push_back(0);
+            // Color
+            resData.push_back(color.red);
+            resData.push_back(color.green);
+            resData.push_back(color.blue);
+            resData.push_back(color.alpha);
+
+            // VoxelSize
+            resData.push_back(metadata.pointSize.x);
         }
     }
 

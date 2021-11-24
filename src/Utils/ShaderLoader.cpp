@@ -95,26 +95,26 @@ void ShaderLoader::LoadShaderProgram(const Value& root)
 
             auto shadersArray = object["Shaders"].GetArray();
             std::vector<Shader*> shaders;
-            for(SizeType i = 0; i < shadersArray.Size(); ++i)
-                shaders.push_back(storage.GetShader(shadersArray[i].GetString()));
+            for(SizeType j = 0; j < shadersArray.Size(); ++j)
+                shaders.push_back(storage.GetShader(shadersArray[j].GetString()));
 
             ShadersList shadersList;
-            for(auto& i: shaders)
-                shadersList[i->GetType()] = i;
+            for(auto& shader: shaders)
+                shadersList[shader->GetType()] = shader;
 
 
             auto uniformsArray = object["Uniforms"].GetArray();
             std::vector<std::string> uniforms;
-            for(SizeType i = 0; i < uniformsArray.Size(); ++i)
-                uniforms.push_back(uniformsArray[i].GetString());
+            for(SizeType j = 0; j < uniformsArray.Size(); ++j)
+                uniforms.push_back(uniformsArray[j].GetString());
 
             auto program = storage.AddShaderProgram(object["Tag"].GetString(), shadersList, uniforms);
 
             auto layoutArray = object["Layout"].GetArray();
             ShadersLayout layout;
-            for(SizeType i = 0; i < layoutArray.Size(); ++i)
-                layout.Add(GetLayoutItemType(layoutArray[i]["Type"].GetString()),
-                           layoutArray[i]["Count"].GetInt());
+            for(SizeType j = 0; j < layoutArray.Size(); ++j)
+                layout.Add(GetLayoutItemType(layoutArray[j]["Type"].GetString()),
+                           layoutArray[j]["Count"].GetInt());
 
             program->SetLayout(layout);
         }

@@ -60,6 +60,7 @@ MainWindow::MainWindow(const std::string &title, glm::uvec2 windowSize):
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    glEnable(GL_POINT_SIZE);
 
     RegisterCallbacks();
 }
