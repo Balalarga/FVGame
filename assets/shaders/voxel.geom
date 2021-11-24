@@ -8,17 +8,26 @@ uniform mat4 MVP;
 in vec4 vColor[];
 in float vVoxelSize[];
 out vec4 gColor;
+out vec3 gNorm;
 
 void AddQuad(vec4 center, vec4 dy, vec4 dx)
 {
-    gl_Position = center + (dx - dy);
+    mat4 quad = mat4(center + (dx - dy),
+                     center + (-dx - dy),
+                     center + (dx + dy),
+                     center + (-dx + dy));
+    gl_Position = quad[0];
     EmitVertex();
-    gl_Position = center + (-dx - dy);
+    gl_Position = quad[1];
     EmitVertex();
-    gl_Position = center + (dx + dy);
+    gl_Position = quad[2];
     EmitVertex();
-    gl_Position = center + (-dx + dy);
+    gl_Position = quad[3];
     EmitVertex();
+
+    vec4 edge1 = quad[1]-quad[0];
+    vec4 edge2 = quad[3]-quad[0];
+    vec3 gNorm = normalize(cross(edge1.xyz, edge2.xyz));
     EndPrimitive();
 }
 
