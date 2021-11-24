@@ -58,15 +58,16 @@ T* LoadRawFromFile(const std::string& path,
             resData.push_back(metadata.pointSize.x);
         }
     }
+    space.Clear();
 
     T* obj = new T(shader);
     obj->Create(resData);
-    obj->SetPrimitive(DrawMode::Points);
     if(!obj->IsCreated())
     {
         delete obj;
         return nullptr;
     }
+    obj->SetPrimitive(DrawMode::Points);
 
     return obj;
 }

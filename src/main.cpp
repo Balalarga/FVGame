@@ -10,31 +10,19 @@ using namespace std;
 void InitObjects(MainWindow* window)
 {
     Scene* scene = window->GetScene();
-    ShaderStorage& shaderStorage = window->GetShaderStorage();
-
     scene->GetCamera().Move({0, 0, 4});
 
-    // Then objects
-//    vector<float>data{
-//        -3, -3, 0, 1, 1, 0, 1,
-//        -3,  3, 0, 1, 1, 0, 1,
-//         3,  3, 0, 1, 0, 1, 1,
-//         3, -3, 0, 0, 1, 1, 1
-//    };
-
-//    DrawableObject* obj1 = new DrawableObject(shaderStorage.GetShaderProgram("DefaultSP"));
-//    obj1->SetPrimitive(DrawMode::Quads);
-//    obj1->Create(data);
-//    scene->AddObject(obj1);
+    ShaderStorage& shaderStorage = window->GetShaderStorage();
 
     DrawableObject* obj = ModelLoader::LoadRawFromFile<DrawableObject>("../assets/models/sphere3.mbin",
                                                                        shaderStorage.GetShaderProgram("VoxelSP"),
                                                                        Color::fromUint(220, 50, 50, 255));
     if(obj)
-    {
-        cout<<"Model loaded\n";
         scene->AddObject(obj);
-    }
+    else
+        cout<<"Couldn't load model\n";
+
+
 }
 
 
