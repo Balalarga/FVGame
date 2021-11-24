@@ -21,8 +21,38 @@ void InitObjects(MainWindow* window)
         scene->AddObject(obj);
     else
         cout<<"Couldn't load model\n";
+}
 
+void InitInput(MainWindow* window)
+{
+    Scene* scene = window->GetScene();
+    auto* input = InputHandler::Get();
 
+    input->Key(GLFW_KEY_W).AddOnPress([scene](){
+        scene->GetCamera().AddVelocity({0, 1, 0});
+    });
+    input->Key(GLFW_KEY_S).AddOnPress([scene](){
+        scene->GetCamera().AddVelocity({0, -1, 0});
+    });
+    input->Key(GLFW_KEY_D).AddOnPress([scene](){
+        scene->GetCamera().AddVelocity({1, 0, 0});
+    });
+    input->Key(GLFW_KEY_A).AddOnPress([scene](){
+        scene->GetCamera().AddVelocity({-1, 0, 0});
+    });
+
+    input->Key(GLFW_KEY_W).AddOnRelease([scene](){
+        scene->GetCamera().AddVelocity({0, -1, 0});
+    });
+    input->Key(GLFW_KEY_S).AddOnRelease([scene](){
+        scene->GetCamera().AddVelocity({0, 1, 0});
+    });
+    input->Key(GLFW_KEY_D).AddOnRelease([scene](){
+        scene->GetCamera().AddVelocity({-1, 0, 0});
+    });
+    input->Key(GLFW_KEY_A).AddOnRelease([scene](){
+        scene->GetCamera().AddVelocity({1, 0, 0});
+    });
 }
 
 
@@ -34,6 +64,7 @@ int main()
     window->GetShaderStorage().CompileAll();
 
     InitObjects(window);
+    InitInput(window);
 
     window->UseImGui(true);
     window->Run();

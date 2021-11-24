@@ -11,33 +11,6 @@ Camera::Camera():
     _aspectRatio(1.f)
 {
     UpdateProjection();
-    auto* input = InputHandler::Get();
-
-    input->Key(GLFW_KEY_W).AddOnPress([this](){
-        AddVelocity({0, 1, 0});
-    });
-    input->Key(GLFW_KEY_S).AddOnPress([this](){
-        AddVelocity({0, -1, 0});
-    });
-    input->Key(GLFW_KEY_D).AddOnPress([this](){
-        AddVelocity({1, 0, 0});
-    });
-    input->Key(GLFW_KEY_A).AddOnPress([this](){
-        AddVelocity({-1, 0, 0});
-    });
-
-    input->Key(GLFW_KEY_W).AddOnRelease([this](){
-        AddVelocity({0, -1, 0});
-    });
-    input->Key(GLFW_KEY_S).AddOnRelease([this](){
-        AddVelocity({0, 1, 0});
-    });
-    input->Key(GLFW_KEY_D).AddOnRelease([this](){
-        AddVelocity({-1, 0, 0});
-    });
-    input->Key(GLFW_KEY_A).AddOnRelease([this](){
-        AddVelocity({1, 0, 0});
-    });
 }
 
 void Camera::ResizeViewport(unsigned width, unsigned height)
