@@ -46,6 +46,12 @@ void ShaderProgram::AddUniform(const std::string &name)
     _uniforms[name] = -1;
 }
 
+void ShaderProgram::AddUniforms(const std::vector<std::string> &names)
+{
+    for(auto& name: names)
+        _uniforms[name] = -1;
+}
+
 bool ShaderProgram::Compile()
 {
     _handler = glCreateProgram();

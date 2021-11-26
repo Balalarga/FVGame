@@ -9,6 +9,7 @@ public:
     Camera();
 
     inline const glm::mat4& ViewProject() { return _viewProjMatrix; }
+    inline const glm::mat4& Project() { return _projection; }
     inline glm::mat4 View() { return glm::inverse(Transform()); }
 
     void ResizeViewport(unsigned width, unsigned height);

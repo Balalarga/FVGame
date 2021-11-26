@@ -23,6 +23,8 @@ ShaderProgram *ShaderStorage::AddShaderProgram(const std::string &tag, const Sha
     for(auto& [_, shader]: shaders)
         program->AddShader(shader);
 
+    program->AddUniforms(uniforms);
+
     _shaderPrograms[tag] = program;
 
     return program;

@@ -27,6 +27,7 @@ public:
 
     void AddShader(Shader *shader);
     void AddUniform(const std::string& name);
+    void AddUniforms(const std::vector<std::string>& names);
 
     bool Compile();
     void Destroy();
@@ -58,7 +59,7 @@ private:
     std::string _shaderProgramName;
 
     ShadersList _shaders;
-    std::map<std::string, unsigned> _uniforms;
+    std::map<std::string, int> _uniforms;
     ShadersLayout _layout;
 };
 
