@@ -6,6 +6,10 @@ layout(location = 1) in vec4 iColor;
 out vec4 vColor;
 
 uniform mat4 MVP;
+uniform mat4 ModelMatrix;
+uniform mat4 ViewMatrix;
+uniform mat4 ProjectionMatrix;
+
 
 void main(void)
 {

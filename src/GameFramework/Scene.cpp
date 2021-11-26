@@ -26,6 +26,7 @@ void Scene::Render()
     for(auto& obj: _objects)
     {
         obj->BindShader();
+        obj->GetShaderProgram()->SetUniform("MVP", _camera.ViewProject() * obj->Transform());
         obj->GetShaderProgram()->SetUniform("ModelMatrix", obj->Transform());
         obj->GetShaderProgram()->SetUniform("ViewMatrix", _camera.View());
         obj->GetShaderProgram()->SetUniform("ProjectionMatrix", _camera.Project());

@@ -3,6 +3,7 @@
 layout(points) in;
 layout(triangle_strip, max_vertices = 24) out;
 
+uniform mat4 MVP;
 uniform mat4 ModelMatrix;
 uniform mat4 ViewMatrix;
 uniform mat4 ProjectionMatrix;
@@ -38,7 +39,6 @@ void main()
     gColor = vColor[0];
     vec4 center = gl_in[0].gl_Position;
 
-    mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
     vec4 dx = MVP[0]/2.0f * vVoxelSize[0];
     vec4 dy = MVP[1]/2.0f * vVoxelSize[0];
     vec4 dz = MVP[2]/2.0f * vVoxelSize[0];
