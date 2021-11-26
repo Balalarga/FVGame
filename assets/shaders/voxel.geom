@@ -19,6 +19,7 @@ void AddQuad(vec4 center, vec4 dy, vec4 dx)
                      center + (-dx - dy),
                      center + (dx + dy),
                      center + (-dx + dy));
+
     gl_Position = quad[0];
     EmitVertex();
     gl_Position = quad[1];
